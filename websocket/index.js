@@ -1,13 +1,9 @@
 'use strict';
-module.exports = (db) => {
+module.exports = (server, db) => {
   const usersCollection = db.collection('users');
 
   const drone = require('netology-fake-drone-api');
-  const app    = require('express')();
-  const server = require('http').Server(app);
   const io     = require('socket.io')(server);
-
-  server.listen(3000);
 
   io.on('connection', function (socket) {
 

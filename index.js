@@ -2,6 +2,7 @@ const MongoClient    = require('mongodb').MongoClient;
 const express        = require('express');
 const bodyParser     = require('body-parser');
 const app            = express();
+const server = require('http').Server(app);
 // const webSocketApp   = require('./websocket');
 
 // Конфигурации сервера и базы данных
@@ -20,9 +21,9 @@ MongoClient.connect(dbUrl)
   .then(db => {
     // Подключаем роуты приложения в процедурном стиле
     require('./server/routes')(app, db);
-    require('./websocket')(db);
+    require('./websocket')(server, db);
 
-    app.listen(serverPort, () => {
+    server.listen(serverPort, () => {
       console.log(`The server is running on port ${serverPort}`);
     });
 
