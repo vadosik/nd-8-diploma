@@ -10,7 +10,7 @@ module.exports = (db) => {
   server.listen(5000);
 
   io.on('connection', function (socket) {
-    
+
     if (!socket.userData) {
       socket.emit('pullUserData');
     }
