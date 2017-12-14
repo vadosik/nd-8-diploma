@@ -2,8 +2,7 @@ const MongoClient    = require('mongodb').MongoClient;
 const express        = require('express');
 const bodyParser     = require('body-parser');
 const app            = express();
-const server = require('http').Server(app);
-// const webSocketApp   = require('./websocket');
+const server         = require('http').Server(app);
 
 // Конфигурации сервера и базы данных
 const dbUrl          = require('./config/db').url;
