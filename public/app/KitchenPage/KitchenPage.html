@@ -1,0 +1,28 @@
+<div class="row">
+  <nav class="indigo">
+    <div class="nav-wrapper">
+
+      <a ui-sref="authorized" class="brand-logo">В ресторан</a>
+
+    </div>
+  </nav>
+</div>
+
+<div class="row">
+
+  <div class="col s6">
+    <h5>Заказы</h5>
+    <div ng-repeat="order in $ctrl.user.orders | filter : {state: 'Заказано'}">
+      <order-card item="order"/>
+    </div>
+  </div>
+
+  <div class="col s6">
+    <h5>Готовится</h5>
+    <div ng-repeat="order in $ctrl.user.orders | filter : {state: 'Готовится'}">
+      <order-card item="order"/>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,23 @@
+<div class="card horizontal">
+
+  <div class="card-image">
+    <img ng-src="{{$ctrl.item.image}}">
+  </div>
+
+  <div class="card-stacked">
+
+    <div class="card-content">
+      <h5>{{$ctrl.item.title}}</h5>
+      <h6>Ингридиенты:</h6>
+      <p>
+        <span ng-repeat="ingredient in $ctrl.item.ingredients track by $index">
+          {{ingredient}}<span ng-if="!$last">, </span>
+        </span>
+      </p>
+    </div>
+
+    <order-card-btn order="$ctrl.item" state="$ctrl.state"/>
+
+  </div>
+
+</div>

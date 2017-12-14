@@ -1,0 +1,36 @@
+<div class="row">
+  <form class="col s8" name="$ctrl.loginForm" novalidate>
+    <div class="row">
+      {{loginForm}}
+
+      <div class="input-field col s12">
+        <i class="material-icons prefix">account_box</i>
+        <input id="iconFirstName" type="text" class="validate" name="userName" ng-model="$ctrl.userData.name" ng-minlength="3" required>
+        <label for="iconFirstName">Имя</label>
+
+        <div ng-messages="$ctrl.loginForm.userName.$error" ng-if="$ctrl.loginForm.userName.$dirty">
+          <div class="red-text" ng-message="required">Это поле обязательно!</div>
+          <div class="red-text" ng-message="minlength">Имя не может быть меньше 3 символов</div>
+        </div>
+      </div>
+
+      <div class="input-field col s12">
+        <i class="material-icons prefix">email</i>
+        <input id="iconEmail" type="email" class="validate" name="userEmail" ng-model="$ctrl.userData.email" ng-pattern='/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' required>
+        <label for="iconEmail">Email</label>
+
+
+        <div ng-messages="$ctrl.loginForm.userEmail.$error" ng-if="$ctrl.loginForm.userEmail.$dirty">
+          <div class="red-text" ng-message="required">Это поле обязательно!</div>
+          <div class="red-text" ng-message="email">Введите корректный email</div>
+          <div class="red-text" ng-message="pattern">Введите корректный email</div>
+        </div>
+      </div>
+
+      <button class="btn indigo" ng-disabled="$ctrl.loginForm.$invalid" ng-click="$ctrl.loginUser($ctrl.userData)">Войти
+        <i class="material-icons right">send</i>
+      </button>
+
+    </div>
+  </form>
+</div>

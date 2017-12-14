@@ -1,0 +1,28 @@
+
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Открыть меню</a>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+
+  <div class="modal-content">
+
+    <h4>Наше меню:</h4>
+
+    <div ng-repeat="menuItem in $ctrl.menu">
+      <order-card item="menuItem" />
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Закрыть</a>
+  </div>
+
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>

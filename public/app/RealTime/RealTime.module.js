@@ -1,0 +1,1 @@
+angular.module('RealTime', ['btford.socket-io']);

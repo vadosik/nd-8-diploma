@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Drone Cafe</title>
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./css/materialize.min.css" rel="stylesheet">
+  <link href="./css/main.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" ng-app="App">
+
+  <ui-view />
+
+</div>
+
+
+<script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/materialize.min.js"></script>
+<script src="./js/lodash.js"></script>
+<script src="./js/socket.io.min.js"></script>
+
+<script src="js/angular-modules/angular.min.js"></script>
+<script src="js/angular-modules/angular-ui-router.min.js"></script>
+<script src="js/angular-modules/angular-messages.min.js"></script>
+<script src="js/angular-modules/restangular.min.js"></script>
+<script src="js/angular-modules/angular-socket.min.js"></script>
+
+<script src="app/App.module.js"></script>
+
+<script src="app/AuthUser/AuthUser.module.js"></script>
+<script src="app/AuthUser/AuthUser.service.js"></script>
+<script src="app/AuthUser/AuthUser.component.js"></script>
+<script src="app/AuthUser/AuthUserForm.component.js"></script>
+
+<script src="app/RestaurantMenu/RestaurantMenu.module.js"></script>
+<script src="app/RestaurantMenu/RestaurantMenu.service.js"></script>
+
+<script src="app/Router/Router.module.js"></script>
+<script src="app/Router/Router.config.js"></script>
+
+<script src="app/RestQueries/RestQueries.module.js"></script>
+<script src="app/RestQueries/RestQueries.config.js"></script>
+<script src="app/RestQueries/RestQueries.service.js"></script>
+
+<script src="app/RealTime/RealTime.module.js"></script>
+<script src="app/RealTime/RealTime.service.js"></script>
+
+<script src="app/UserPage/UserPage.component.js"></script>
+<script src="app/UserPage/UserPageNavBar.component.js"></script>
+<script src="app/UserPage/UserPageModalMenu.component.js"></script>
+
+<script src="app/KitchenPage/KitchenPage.component.js"></script>
+
+<script src="app/OrderComponents/OrderCard.component.js"></script>
+<script src="app/OrderComponents/OrderCardBtn.component.js"></script>
+
+</body>
+</html>

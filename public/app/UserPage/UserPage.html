@@ -1,0 +1,21 @@
+<user-page-nav-bar user="$ctrl.user"/>
+
+<div class="col s12 m7">
+  <h3 class="header">Заказанные блюда</h3>
+
+  <user-page-modal-menu menu="$ctrl.menu" />
+
+  <div ng-if="$ctrl.user.orders.length <= 0">
+    Актуальных заказов пока нет
+  </div>
+
+  <div ng-if="$ctrl.user.orders.length">
+
+    <div ng-repeat="order in $ctrl.user.orders">
+      <order-card item="order" state="order.state"/>
+    </div>
+
+  </div>
+
+
+</div>

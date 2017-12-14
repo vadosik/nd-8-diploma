@@ -1,0 +1,14 @@
+<div class="row">
+  <nav class="indigo">
+
+    <div class="nav-wrapper">
+      <a ui-sref="kitchen" class="brand-logo">На кухню</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Имя: {{$ctrl.user.name}}</a></li>
+        <li><a href="#">Кредиты: {{$ctrl.user.credits}}</a></li>
+        <li><a class="waves-effect waves-light btn" ng-click="$ctrl.addCredits()">+100 кредитов</a></li>
+      </ul>
+    </div>
+
+  </nav>
+</div>

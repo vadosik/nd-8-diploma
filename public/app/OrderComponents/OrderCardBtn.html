@@ -1,0 +1,17 @@
+<div class="card-action" ng-if="!$ctrl.order.state">
+  <a class="waves-effect waves-light btn" ng-show="$ctrl.isEnoughCredits" ng-click="$ctrl.makeOrder()">Заказать</a>
+  <a class="waves-effect waves-light btn" ng-show="!$ctrl.isEnoughCredits" ng-click="$ctrl.addCredits()">Добавить {{$ctrl.creditsDifference}}</a>
+  <span class="right">Стоимость: {{$ctrl.order.price}}</span>
+</div>
+
+<div class="card-action" ng-if="!$ctrl.state">
+
+  <a class="waves-effect waves-light btn" ng-if="$ctrl.order.state === 'Заказано'" ng-click="$ctrl.startCook()">Начать готовить</a>
+
+  <a class="waves-effect waves-light btn" ng-if="$ctrl.order.state === 'Готовится'" ng-click="$ctrl.doneCook()">Готово</a>
+
+</div>
+
+<div class="card-action" ng-if="$ctrl.state">
+  <a class="waves-effect waves-light btn disabled">{{$ctrl.state}}</a>
+</div>
