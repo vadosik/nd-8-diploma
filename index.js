@@ -19,7 +19,7 @@ app.use(express.static('public'));
 MongoClient.connect(dbUrl)
   .then(db => {
     // Подключаем роуты приложения в процедурном стиле
-    require('./server/routes')(app, db);
+    require('./api-routes')(app, db);
     require('./websocket')(server, db);
 
     server.listen(serverPort, () => {

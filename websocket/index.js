@@ -1,9 +1,9 @@
 'use strict';
-module.exports = (server, db) => {
-  const usersCollection = db.collection('users');
+const drone = require('netology-fake-drone-api');
 
-  const drone = require('netology-fake-drone-api');
-  const io     = require('socket.io')(server);
+module.exports = (server, db) => {
+  const io = require('socket.io')(server);
+  const usersCollection = db.collection('users');
 
   io.on('connection', function (socket) {
 
@@ -25,24 +25,33 @@ module.exports = (server, db) => {
       };
       
       (async function() {
-        const userData = await usersCollection.findOne({'_id': socket.userData['_id']});
-        let ordersCount = userData.orders.length;
-        newOrder['_id'] = ++ordersCount;
-        userData.credits -= newOrder.price;
-        userData.orders.push(newOrder);
+        try {
+          const userData = await usersCollection.findOne({'_id': socket.userData['_id']});
+          let ordersCount = userData.orders.length;
+          newOrder['_id'] = ++ordersCount;
+          userData.credits -= newOrder.price;
+          userData.orders.push(newOrder);
 
-        updateUser(userData);
+          updateUser(userData);
+
+        } catch (error) {
+          return console.error(error);
+        }
       })();
     });
 
     socket.on('creditsAdded', function (creditsAmount) {
       (async function() {
-        const userData = await usersCollection.findOne({'_id': socket.userData['_id']});
-        userData.credits += creditsAmount;
+        try {
+          const userData = await usersCollection.findOne({'_id': socket.userData['_id']});
+          userData.credits += creditsAmount;
 
-        updateUser(userData);
+          updateUser(userData);
+
+        } catch (error) {
+          return console.error(error);
+        }
       })();
-
     });
 
     socket.on('orderUpdate', function (order, newState) {
@@ -52,61 +61,80 @@ module.exports = (server, db) => {
       }
 
       (async function() {
+        try {
+          await updateOrderState(order['_id'], newState);
 
-        await updateOrderState(order['_id'], newState);
+          if (newState === 'Доставляется') {
+            drone
+              .deliver()
+              .then(() => {
+                updateOrderState(order['_id'], 'Подано');
+                deleteOrder(order['_id']);
+              })
+              .catch(() => {
+                updateOrderState(order['_id'], 'Возникли сложности');
+                deleteOrder(order['_id']);
+              });
+          }
 
-        if (newState === 'Доставляется') {
-          drone
-            .deliver()
-            .then(() => {
-              updateOrderState(order['_id'], 'Подано');
-              deleteOrder(order['_id']);
-            })
-            .catch(() => {
-              updateOrderState(order['_id'], 'Возникли сложности');
-              deleteOrder(order['_id']);
-            });
+        } catch (error) {
+          return console.error(error);
         }
       })();
-
     });
 
     async function updateUser(userData) {
-      const updateAnswer = await usersCollection.findOneAndUpdate({'_id': socket.userData['_id']}, userData);
+      try {
+        const updateAnswer = await usersCollection.findOneAndUpdate({'_id': socket.userData['_id']}, userData);
 
-      if (updateAnswer.ok) {
-        socket.emit('userUpdated', userData);
+        if (updateAnswer.ok) {
+          socket.emit('userUpdated', userData);
+        }
+
+      } catch (error) {
+        return console.error(error);
       }
     }
 
     async function updateOrderState(orderId, newState) {
-      const userData = await usersCollection.findOne({'_id': socket.userData['_id']});
-      let updateOrderIndex;
+      try {
+        const userData = await usersCollection.findOne({'_id': socket.userData['_id']});
 
-      userData.orders.forEach((el, i) => {
-        if (el['_id'] === orderId) {
-          updateOrderIndex = i;
-          userData.orders[updateOrderIndex].state = newState;
-        }
-      });
+        userData.orders.forEach((el, i) => {
+          if (el['_id'] === orderId) {
 
-      updateUser(userData);
+            if (newState === 'Возникли сложности') {
+              userData.credits += el.price;
+            }
+
+            userData.orders[i].state = newState;
+          }
+        });
+
+        updateUser(userData);
+
+      } catch (error) {
+        return console.error(error);
+      }
     }
 
     function deleteOrder(orderId) {
       setTimeout(() => {
         (async function () {
+          try {
+            const userData = await usersCollection.findOne({'_id': socket.userData['_id']});
 
-          const userData = await usersCollection.findOne({'_id': socket.userData['_id']});
+            userData.orders.forEach((el, i) => {
+              if (el['_id'] === orderId) {
+                userData.orders.splice(i, 1);
+              }
+            });
 
-          userData.orders.forEach((el, i) => {
-            if (el['_id'] === orderId) {
-              userData.orders.splice(i, 1);
-            }
-          });
+            updateUser(userData);
 
-          updateUser(userData);
-
+          } catch (error) {
+            return console.error(error);
+          }
         })();
       }, 1000 * 120);
     }
