@@ -9,11 +9,11 @@ module.exports = (app, db) => {
       const menuItems = [];
 
       menuCursor.forEach(
-        function (document) {
+        (document) => {
           menuItems.push(document);
         },
 
-        function (error) {
+        (error) => {
           if (error) {
             return sendServerError(error, res);
           }

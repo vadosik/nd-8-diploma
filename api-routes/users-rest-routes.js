@@ -14,7 +14,7 @@ module.exports = (app, db) => {
         return sendNotValidRequest(res);
       }
 
-      const userIdSelector = {'_id': incomingData.email};
+      const userIdSelector = {'_id': incomingEmail};
 
       (async function() {
         const searchableUser = await usersCollection.findOne(userIdSelector);
