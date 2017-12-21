@@ -33,7 +33,7 @@ nd-8-diploma
 │   │   └── materialize.min.js
 │   │   └── lodash.js
 │   │   └── socket.io.min.js
-│   └────── angular-modules
+│   │   └── angular-modules
 │   │       └── angular.min.js
 │   │       └── angular-ui-router.min.js
 │   │       └── angular-socket.min.js
