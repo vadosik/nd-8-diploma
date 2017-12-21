@@ -106,7 +106,7 @@ nd-8-diploma
      │       └── UserPage.page-object.js
      │       └── UserPageModalMenu.page-object.js
      │       └── UserPageNavBar.page-object.js
-     └── e2e
+     └── rest-tests
          └── v1
              └── apiMenu.spec.js
              └── apiUsers.spec.js
