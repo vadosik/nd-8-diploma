@@ -9,15 +9,6 @@ angular.module('Router')
     });
 
     $stateProvider.state({
-      name: 'logout',
-      url: '/logout',
-      controller: function ($rootScope, $scope, $state, AuthUserService) {
-        delete AuthUserService.user;
-        $state.go('authorization');
-      }
-    });
-
-    $stateProvider.state({
       name: 'kitchen',
       url: '/kitchen',
       component: 'kitchenPage'

@@ -57,7 +57,7 @@ module.exports = (server, db) => {
     socket.on('orderUpdate', function (order, newState) {
 
       if (!order || !newState) {
-        throw new Error('Invaalid arguments');
+        throw new Error('Invalid arguments');
       }
 
       (async function() {

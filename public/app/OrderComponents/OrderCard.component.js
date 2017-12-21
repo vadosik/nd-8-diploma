@@ -5,8 +5,5 @@ angular.module('App')
     bindings: {
       item: '<',
       state: '<'
-    },
-    controller: function () {
-      const vm = this;
     }
   });

@@ -3,11 +3,11 @@ angular.module('AuthUser')
   .component('authUserForm', {
     templateUrl: './app/AuthUser/AuthUserForm.html',
     controller: function (AuthUserService) {
-      const vm = this;
+      const $ctrl = this;
 
-      vm.nameIsCorrect = false;
+      $ctrl.nameIsCorrect = false;
 
-      this.loginUser = function(userData) {
+      $ctrl.loginUser = function(userData) {
         AuthUserService.loginUser(userData);
       };
     }

@@ -7,38 +7,38 @@ angular.module('App')
       state: '<'
     },
     controller: function (AuthUserService, $timeout, $rootScope, RealTimeService) {
-      const vm = this;
+      const $ctrl = this;
 
       $timeout(function () {
-        vm.calculateIsEnoughCredits();
+        $ctrl.calculateIsEnoughCredits();
       }, 0);
 
-      vm.calculateIsEnoughCredits = function () {
-        vm.isEnoughCredits = vm.order.price <= AuthUserService.user.credits;
+      $ctrl.calculateIsEnoughCredits = function () {
+        $ctrl.isEnoughCredits = $ctrl.order.price <= AuthUserService.user.credits;
 
-        if (!vm.isEnoughCredits) {
-          vm.creditsDifference = vm.order.price - AuthUserService.user.credits;
+        if (!$ctrl.isEnoughCredits) {
+          $ctrl.creditsDifference = $ctrl.order.price - AuthUserService.user.credits;
         }
       };
 
-      vm.addCredits = function () {
-        RealTimeService.emit('creditsAdded', vm.creditsDifference);
+      $ctrl.addCredits = function () {
+        RealTimeService.emit('creditsAdded', $ctrl.creditsDifference);
       };
 
       $rootScope.$on('creditsChanged', function() {
-        vm.calculateIsEnoughCredits();
+        $ctrl.calculateIsEnoughCredits();
       });
 
-      vm.makeOrder = function() {
-        RealTimeService.emit('makeNewOrder', vm.order);
+      $ctrl.makeOrder = function() {
+        RealTimeService.emit('makeNewOrder', $ctrl.order);
       };
 
-      vm.startCook = function() {
-        RealTimeService.emit('orderUpdate', vm.order, 'Готовится');
+      $ctrl.startCook = function() {
+        RealTimeService.emit('orderUpdate', $ctrl.order, 'Готовится');
       };
 
-      vm.doneCook = function() {
-        RealTimeService.emit('orderUpdate', vm.order, 'Доставляется');
+      $ctrl.doneCook = function() {
+        RealTimeService.emit('orderUpdate', $ctrl.order, 'Доставляется');
       };
     }
   });

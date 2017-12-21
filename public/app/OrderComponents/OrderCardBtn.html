@@ -1,6 +1,6 @@
 <div class="card-action" ng-if="!$ctrl.order.state">
-  <a class="waves-effect waves-light btn" ng-show="$ctrl.isEnoughCredits" ng-click="$ctrl.makeOrder()">Заказать</a>
-  <a class="waves-effect waves-light btn" ng-show="!$ctrl.isEnoughCredits" ng-click="$ctrl.addCredits()">Добавить {{$ctrl.creditsDifference}}</a>
+  <a class="waves-effect waves-light btn add-item-btn" ng-if="$ctrl.isEnoughCredits" ng-click="$ctrl.makeOrder()">Заказать</a>
+  <a class="waves-effect waves-light btn not-enough-credits" ng-if="!$ctrl.isEnoughCredits" ng-click="$ctrl.addCredits()">Добавить {{$ctrl.creditsDifference}}</a>
   <span class="right">Стоимость: {{$ctrl.order.price}}</span>
 </div>
 

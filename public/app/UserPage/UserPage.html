@@ -11,7 +11,7 @@
 
   <div ng-if="$ctrl.user.orders.length">
 
-    <div ng-repeat="order in $ctrl.user.orders">
+    <div class="user-orders" ng-repeat="order in $ctrl.user.orders">
       <order-card item="order" state="order.state"/>
     </div>
 

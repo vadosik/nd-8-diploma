@@ -1,5 +1,4 @@
 const usersApiPath = '/api/v1/users';
-const userOrdersApiPath = '/api/v1/users/:userId/orders';
 
 module.exports = (app, db) => {
   const usersCollection = db.collection('users');

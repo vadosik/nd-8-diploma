@@ -4,9 +4,9 @@
     <div class="nav-wrapper">
       <a ui-sref="kitchen" class="brand-logo">На кухню</a>
       <ul class="right hide-on-med-and-down">
-        <li><a>Имя: {{$ctrl.user.name}}</a></li>
-        <li><a>Кредиты: {{$ctrl.user.credits}}</a></li>
-        <li><a class="waves-effect waves-light btn" ng-click="$ctrl.addCredits()">+100 кредитов</a></li>
+        <li><a class="user-name-field">Имя: {{$ctrl.user.name}}</a></li>
+        <li><a class="user-credits-field">Кредиты: {{$ctrl.user.credits}}</a></li>
+        <li><a class="waves-effect waves-light btn add-credits-btn" ng-click="$ctrl.addCredits()">+100 кредитов</a></li>
       </ul>
     </div>
 

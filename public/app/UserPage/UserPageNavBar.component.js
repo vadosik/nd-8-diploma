@@ -6,9 +6,9 @@ angular.module('App')
       user: '<'
     },
     controller: function (RealTimeService, $timeout, $rootScope) {
-      const vm = this;
+      const $ctrl = this;
       
-      vm.addCredits = function () {
+      $ctrl.addCredits = function () {
         RealTimeService.emit('creditsAdded', 100);
         $timeout(function () {
           $rootScope.$emit('creditsChanged');

@@ -4,8 +4,5 @@ angular.module('App')
     templateUrl: './app/UserPage/UserPageModalMenu.html',
     bindings: {
       menu: '<'
-    },
-    controller: function () {
-      const vm = this;
     }
   });
