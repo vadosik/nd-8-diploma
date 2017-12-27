@@ -20,7 +20,7 @@ MongoClient.connect(dbUrl)
   .then(db => {
     // Подключаем роуты приложения в процедурном стиле
     require('./api-routes')(app, db);
-    require('./websocket')(server, db);
+    require('./websocket/socketController')(server, db);
 
     server.listen(serverPort, () => {
       console.log(`The server is running on port ${serverPort}`);
