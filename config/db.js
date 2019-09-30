@@ -1,3 +1,3 @@
 module.exports = {
-  url: process.env.MONGO_DB_URL  || 'mongodb://localhost:27017/nd-diploma-kundryukov'
+  url: process.env.MONGO_DB_URL  || 'mongodb+srv://test:<password>@mig-cafe-lypoi.mongodb.net/test?retryWrites=true&w=majority'
 };
